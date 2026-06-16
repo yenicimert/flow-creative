@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow-Creative | Creative Agency</title>
+<meta name="description" content="Flow-Creative is a freelance creative agency specializing in digital project management, helping businesses streamline processes and achieve project success.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #4BFFA7;
+    --black: #0a0a0a;
+    --offwhite: #E6E8DA;
+    --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--black);
+    color: var(--offwhite);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 20px 52px; gap: 40px;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.7) 0%, transparent 100%);
+  }
+  nav a {
+    color: var(--green); text-decoration: none; font-size: 12px;
+    font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; transition: opacity 0.2s;
+  }
+  nav a:hover { opacity: 0.65; }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; overflow: hidden; padding: 120px 24px 80px;
+  }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 70% at 50% 40%, #1c1535 0%, #0a0a0a 65%); z-index: 0; }
+  .hero-orbs { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.5; }
+  .orb-1 { width: 460px; height: 460px; background: #5b4fcf; top: -100px; left: 10%; }
+  .orb-2 { width: 340px; height: 340px; background: #e8795f; top: 30px; right: 8%; }
+  .orb-3 { width: 280px; height: 280px; background: #4bafff; bottom: 8%; left: 3%; }
+  .orb-4 { width: 220px; height: 220px; background: #f5c842; top: 18%; right: 22%; opacity: 0.45; }
+  .orb-5 { width: 380px; height: 380px; background: #a855f7; bottom: -80px; right: 18%; opacity: 0.35; }
+  .hero-content { position: relative; z-index: 1; }
+  .hero h1 {
+    font-size: clamp(60px, 11vw, 150px); font-weight: 900; letter-spacing: -0.03em;
+    line-height: 0.92; color: var(--white); text-transform: uppercase;
+    font-family: Impact, 'Arial Black', sans-serif;
+  }
+  .hero-script {
+    font-family: Georgia, 'Times New Roman', serif; font-style: italic;
+    font-size: clamp(36px, 6.5vw, 82px); font-weight: 400; color: var(--green);
+    letter-spacing: -0.01em; line-height: 1.05; margin-top: -4px;
+  }
+  .hero-tagline { margin-top: 44px; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); font-weight: 700; }
+  .hero-sub { margin-top: 6px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--offwhite); opacity: 0.75; }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block; padding: 13px 32px; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.1em; text-decoration: none; text-transform: uppercase;
+    border: 1.5px solid var(--black); background: var(--black); color: var(--white);
+    cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: var(--white); color: var(--black); }
+  .btn-green { background: var(--green); color: var(--black); border-color: var(--green); }
+  .btn-green:hover { background: var(--black); color: var(--green); border-color: var(--green); }
+  .btn-outline-green { background: transparent; color: var(--green); border-color: var(--green); }
+  .btn-outline-green:hover { background: var(--green); color: var(--black); }
+
+  /* INTRO */
+  .intro-wrap { background: var(--offwhite); }
+  .intro { max-width: 1100px; margin: 0 auto; padding: 80px 48px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: start; }
+  .intro-img { width: 100%; aspect-ratio: 4/5; overflow: hidden; border-radius: 2px; }
+  .intro-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .intro-text h2 { font-size: clamp(30px, 4vw, 50px); font-weight: 900; font-family: Impact, 'Arial Black', sans-serif; letter-spacing: -0.01em; color: var(--black); margin-bottom: 4px; }
+  .intro-text .hello { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #22c25e; margin-bottom: 22px; }
+  .intro-text p { font-size: 15px; line-height: 1.75; color: #333; margin-bottom: 14px; }
+  .intro-text p a { color: #d43200; font-weight: 600; text-decoration: none; }
+  .intro-text p a:hover { text-decoration: underline; }
+  .intro-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+  /* PROJECTS */
+  .projects-wrap { background: var(--black); }
+  .projects { max-width: 1200px; margin: 0 auto; padding: 80px 48px; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-header h2 { font-size: clamp(34px, 5.5vw, 64px); font-weight: 900; text-transform: uppercase; font-family: Impact, 'Arial Black', sans-serif; color: var(--green); letter-spacing: -0.01em; }
+  .section-header p { max-width: 620px; margin: 14px auto 0; font-size: 15px; color: var(--offwhite); opacity: 0.7; line-height: 1.7; }
+  .section-header p a { color: var(--green); font-weight: 600; text-decoration: none; }
+  .project-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .project-card { position: relative; overflow: hidden; background: #111; cursor: pointer; }
+  .project-card:hover img { transform: scale(1.05); }
+  .project-card:hover .project-overlay { opacity: 1; }
+  .project-card-inner { position: relative; overflow: hidden; height: 260px; }
+  .project-card-inner.tall { height: 380px; }
+  .project-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .project-overlay { position: absolute; inset: 0; background: rgba(75,255,167,0.12); opacity: 0; transition: opacity 0.3s; }
+  .project-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); padding: 10px 2px 4px; }
+  .projects-cta { text-align: center; margin-top: 44px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* SERVICES */
+  .services-wrap { background: var(--offwhite); }
+  .services { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+  .services .section-header h2 { color: var(--black); }
+  .services .section-header p { color: #555; opacity: 1; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+  .service-card { border-top: 2.5px solid var(--black); padding-top: 24px; }
+  .service-card h3 { font-size: 16px; font-weight: 700; text-transform: uppercase; font-family: Impact, 'Arial Black', sans-serif; letter-spacing: 0.04em; color: var(--black); margin-bottom: 10px; }
+  .service-card p { font-size: 14px; line-height: 1.75; color: #444; }
+
+  /* MAP */
+  .map-wrap iframe { display: block; width: 100%; height: 380px; border: none; }
+
+  /* CONTACT */
+  .contact-wrap { background: var(--offwhite); padding: 60px 48px 72px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .contact-big { font-size: clamp(60px, 13vw, 180px); font-weight: 900; font-family: Impact, 'Arial Black', sans-serif; color: var(--green); text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.88; margin-bottom: 52px; }
+  .contact-cols { display: grid; grid-template-columns: 2fr 1.2fr 1.2fr 1fr; gap: 40px; border-top: 1px solid #aaa; padding-top: 32px; max-width: 1100px; width: 100%; text-align: left; }
+  .contact-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); margin-bottom: 10px; }
+  .contact-col p, .contact-col a { font-size: 14px; color: #444; line-height: 1.9; text-decoration: none; display: block; }
+  .contact-col a:hover { color: var(--black); text-decoration: underline; }
+  .social-links { display: flex; gap: 14px; margin-top: 6px; }
+  .social-links a { font-size: 13px; font-weight: 700; color: var(--black); text-decoration: none; }
+  .social-links a:hover { opacity: 0.55; }
+
+  /* FOOTER */
+  footer { background: var(--offwhite); border-top: 1px solid #ccc; padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #888; }
+  footer a { color: #888; text-decoration: none; cursor: pointer; }
+  footer a:hover { color: var(--black); }
+  footer .footer-links { display: flex; gap: 20px; }
+
+  /* COOKIE BANNER */
+  .cookie-banner {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    background: #1a1a1a; border-top: 1px solid #333;
+    padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    font-size: 13px; color: #ccc;
+  }
+  .cookie-banner a { color: var(--green); text-decoration: underline; cursor: pointer; }
+  .cookie-banner-btns { display: flex; gap: 10px; flex-shrink: 0; }
+  .cookie-btn {
+    padding: 9px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; border: 1.5px solid; cursor: pointer; transition: all 0.2s;
+  }
+  .cookie-btn-accept { background: var(--green); color: var(--black); border-color: var(--green); }
+  .cookie-btn-accept:hover { background: #2ee88a; }
+  .cookie-btn-decline { background: transparent; color: #aaa; border-color: #555; }
+  .cookie-btn-decline:hover { border-color: #aaa; color: #fff; }
+  .cookie-banner.hidden { display: none; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.75);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: var(--white); color: #222;
+    width: 100%; max-width: 680px; max-height: 80vh;
+    border-radius: 4px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transform: translateY(20px); transition: transform 0.25s;
+  }
+  .modal-overlay.active .modal { transform: translateY(0); }
+  .modal-header {
+    padding: 24px 28px 20px; border-bottom: 1px solid #eee;
+    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+  }
+  .modal-header h3 { font-size: 18px; font-weight: 700; font-family: Impact, 'Arial Black', sans-serif; letter-spacing: 0.02em; text-transform: uppercase; }
+  .modal-close {
+    width: 32px; height: 32px; border: none; background: none;
+    cursor: pointer; font-size: 22px; color: #666; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; transition: background 0.2s;
+  }
+  .modal-close:hover { background: #f0f0f0; }
+  .modal-body { padding: 24px 28px; overflow-y: auto; flex: 1; }
+  .modal-body h4 { font-size: 14px; font-weight: 700; margin: 20px 0 6px; color: #111; }
+  .modal-body h4:first-child { margin-top: 0; }
+  .modal-body p { font-size: 14px; line-height: 1.75; color: #444; margin-bottom: 10px; }
+  .modal-body ul { padding-left: 20px; margin-bottom: 10px; }
+  .modal-body ul li { font-size: 14px; line-height: 1.75; color: #444; margin-bottom: 4px; }
+  .modal-body a { color: #d43200; }
+  .modal-effective { font-size: 12px; color: #999; margin-bottom: 20px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav { padding: 16px 24px; gap: 22px; }
+    .intro { grid-template-columns: 1fr; padding: 60px 24px; gap: 36px; }
+    .intro-img { aspect-ratio: 4/3; max-height: 340px; }
+    .project-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .contact-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .projects { padding: 60px 24px; }
+    .services { padding: 60px 24px; }
+    .contact-wrap { padding: 60px 24px 60px; }
+    footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .cookie-banner { flex-direction: column; padding: 16px 24px; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    nav { flex-wrap: wrap; justify-content: center; gap: 14px; padding: 14px 16px; }
+    .project-grid { grid-template-columns: 1fr; }
+    .project-card-inner.tall { height: 260px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .contact-big { font-size: clamp(48px, 18vw, 100px); }
+    .contact-cols { grid-template-columns: 1fr; }
+    footer .footer-links { flex-direction: column; gap: 6px; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+  </div>
+  <div class="hero-content">
+    <h1>Flow-Creative</h1>
+    <div class="hero-script">by Mert Yenici</div>
+    <p class="hero-tagline">Project Management · Amsterdam</p>
+    <p class="hero-sub">Ready to create something together?</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="about" class="intro-wrap">
+  <div class="intro">
+    <div class="intro-img">
+      <img src="mert-profile.png" alt="Mert Yenici — Flow-Creative">
+    </div>
+    <div class="intro-text">
+      <h2>Introduction</h2>
+      <p class="hello">Hello!</p>
+      <p>I'm Mert, an Amsterdam-based Digital Project Manager with over 10 years of experience working across global agency networks like Monks, OLIVER Agency, Publicis Groupe, and Havas CX. I've had the privilege of collaborating with incredible brands such as Diageo (Johnnie Walker), Nike, Sanofi, Mercedes-Benz, Peugeot, Philips, and Netflix.</p>
+      <p>Throughout my career, I've always enjoyed bridging the gap between creatives and brands, ensuring ideas are not only brought to life but also exceed expectations.</p>
+      <p>I recently launched my freelance company, <strong>Flow-Creative</strong>, which focuses on helping businesses streamline their processes and create work that truly resonates. I'm eager to partner with new clients and bring fresh ideas.</p>
+      <p>Let's work together to make something great!</p>
+      <div class="intro-btns">
+        <a href="https://www.linkedin.com/in/mertyenici/" target="_blank" rel="noopener" class="btn">More About Me</a>
+        <a href="https://canva.link/v7fkd1pgxncw5as" target="_blank" rel="noopener" class="btn-outline-green btn">View Portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects-wrap">
+  <div class="projects">
+    <div class="section-header">
+      <h2>Project Highlights</h2>
+      <p>With over 8 years of experience managing large-scale digital projects across industries — from global entertainment to automotive and lifestyle brands.</p>
+      <p style="margin-top:8px;">I'm proud to have delivered results for <a href="https://canva.link/v7fkd1pgxncw5as" target="_blank">these fantastic brands</a>.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-card-inner">
+          <img src="project-johnnie-blend.jpg" alt="Johnnie Walker × The Blend">
+          <div class="project-overlay"></div>
+        </div>
+        <p class="project-label">Johnnie Walker × The Blend</p>
+      </div>
+      <div class="project-card">
+        <div class="project-card-inner">
+          <img src="project-netflix.jpg" alt="Netflix: La Casa de Papel">
+          <div class="project-overlay"></div>
+        </div>
+        <p class="project-label">Netflix: La Casa de Papel</p>
+      </div>
+      <div class="project-card">
+        <div class="project-card-inner">
+          <img src="project-nike-rocket.jpg" alt="Nike FC × Rocket League">
+          <div class="project-overlay"></div>
+        </div>
+        <p class="project-label">Nike FC × Rocket League</p>
+      </div>
+      <div class="project-card">
+        <div class="project-card-inner tall">
+          <img src="project-johnnie-desire.png" alt="Johnnie Walker Whisky Desire">
+          <div class="project-overlay"></div>
+        </div>
+        <p class="project-label">Johnnie Walker Whisky Desire</p>
+      </div>
+      <div class="project-card" style="grid-column: 2 / 4;">
+        <div class="project-card-inner tall">
+          <img src="project-mercedes.jpg" alt="Mercedes-Benz A-Series Celebrations">
+          <div class="project-overlay"></div>
+        </div>
+        <p class="project-label">Mercedes-Benz A-Series Celebrations</p>
+      </div>
+    </div>
+    <div class="projects-cta">
+      <a href="https://canva.link/v7fkd1pgxncw5as" target="_blank" rel="noopener" class="btn btn-green">View Full Portfolio ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-wrap">
+  <div class="services">
+    <div class="section-header">
+      <h2>Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Project Management</h3>
+        <p>Helping companies manage their projects, budgets, and timelines effectively with a proven approach to cross-functional collaboration.</p>
+      </div>
+      <div class="service-card">
+        <h3>Digital Production</h3>
+        <p>Experienced in leading and mapping digital production pipelines across websites, social media, and large-scale campaign deliveries.</p>
+      </div>
+      <div class="service-card">
+        <h3>Stakeholder Management</h3>
+        <p>Working closely with stakeholders and client teams to communicate project status and drive initiatives to successful outcomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-wrap">
+  <iframe
+    src="https://maps.google.com/maps?q=Ertskade+228,+Amsterdam,+Netherlands&output=embed&z=15"
+    title="Flow-Creative location — Amsterdam"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-wrap">
+  <div class="contact-big">Contact Us</div>
+  <div class="contact-cols">
+    <div class="contact-col">
+      <p style="font-size:15px;color:#333;line-height:1.85;">Let's work together to build your brand.<br>Contact us and we'll get back to you soon.</p>
+    </div>
+    <div class="contact-col">
+      <h4>Location</h4>
+      <p>Ertskade 228</p>
+      <p>Amsterdam, Netherlands</p>
+    </div>
+    <div class="contact-col">
+      <h4>Contact</h4>
+      <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a>
+      <a href="https://flow-creative.nl">flow-creative.nl</a>
+    </div>
+    <div class="contact-col">
+      <h4>Follow</h4>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/mertyenici/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <h4 style="margin-top:20px;">Portfolio</h4>
+      <a href="https://canva.link/v7fkd1pgxncw5as" target="_blank" rel="noopener" style="font-weight:600;">View Work ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 Flow-Creative. All rights reserved.</span>
+  <div class="footer-links">
+    <a onclick="openModal('privacy')">Privacy Statement</a>
+    <a onclick="openModal('cookies')">Cookies Policy</a>
+    <a onclick="openModal('terms')">Terms &amp; Conditions</a>
+  </div>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <span>We use cookies to enhance your experience. By continuing, you agree to our <a onclick="openModal('cookies')">Cookies Policy</a> and <a onclick="openModal('privacy')">Privacy Statement</a>.</span>
+  <div class="cookie-banner-btns">
+    <button class="cookie-btn cookie-btn-decline" onclick="dismissCookies()">Decline</button>
+    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Privacy Statement</h3>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+  const content = {
+    privacy: {
+      title: 'Privacy Statement',
+      html: `
+        <p class="modal-effective">Effective Date: 20 November 2024</p>
+        <p>Flow-Creative is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information about you when you visit our website or interact with us.</p>
+        <h4>1. Information We Collect</h4>
+        <p>We may collect the following types of information:</p>
+        <ul>
+          <li><strong>Personal Information:</strong> Name, email address, phone number, and other contact details you voluntarily provide.</li>
+          <li><strong>Technical Information:</strong> IP address, browser type, operating system, and usage data collected automatically through cookies.</li>
+          <li><strong>Other Information:</strong> Any additional data you provide when contacting or subscribing to our services.</li>
+        </ul>
+        <h4>2. How We Use Your Information</h4>
+        <ul>
+          <li>Respond to your inquiries and provide requested services.</li>
+          <li>Improve the functionality, design, and performance of our website.</li>
+          <li>Communicate updates, promotions, or news relevant to our services (with your consent).</li>
+          <li>Comply with legal obligations or enforce our terms and policies.</li>
+        </ul>
+        <h4>3. Sharing Your Information</h4>
+        <p>We do not sell or rent your information. We may share it with trusted service providers who help us operate our website, or with legal authorities when required by law.</p>
+        <h4>4. Cookies and Tracking Technologies</h4>
+        <p>We use cookies to enhance your browsing experience. For more details, see our Cookies Policy.</p>
+        <h4>5. Data Retention</h4>
+        <p>We retain your information only as long as necessary to fulfill the purposes outlined in this policy or as required by law.</p>
+        <h4>6. Your Rights</h4>
+        <ul>
+          <li>Access, correct, or delete your data.</li>
+          <li>Object to or restrict data processing.</li>
+          <li>Withdraw consent for certain uses.</li>
+          <li>File a complaint with a data protection authority.</li>
+        </ul>
+        <h4>7. Data Security</h4>
+        <p>We take appropriate technical and organizational measures to protect your data from unauthorized access, loss, or misuse.</p>
+        <h4>8. Third-Party Links</h4>
+        <p>Our website may contain links to third-party websites. We are not responsible for their privacy practices.</p>
+        <h4>9. Changes to This Policy</h4>
+        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page.</p>
+        <h4>10. Contact Us</h4>
+        <p>Email: <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a><br>Phone: +31 6 86248751</p>
+      `
+    },
+    cookies: {
+      title: 'Cookies Policy',
+      html: `
+        <p>At Flow-Creative, we value your privacy and are committed to being transparent about the technologies we use.</p>
+        <h4>What Are Cookies?</h4>
+        <p>Cookies are small text files stored on your device by your web browser. They help websites recognize your device and improve your browsing experience by remembering your preferences and interactions.</p>
+        <h4>How We Use Cookies</h4>
+        <ul>
+          <li>Enhance your browsing experience on our website.</li>
+          <li>Analyze website traffic and improve our content and functionality.</li>
+          <li>Enable essential website functions and security features.</li>
+        </ul>
+        <h4>Types of Cookies We Use</h4>
+        <ul>
+          <li><strong>Essential Cookies:</strong> Required for the website to function properly.</li>
+          <li><strong>Performance Cookies:</strong> Help us understand how visitors interact with our site by collecting anonymous data.</li>
+          <li><strong>Functional Cookies:</strong> Remember your preferences, such as language or region.</li>
+          <li><strong>Advertising/Tracking Cookies:</strong> Provide personalized ads and track website activity for analytics.</li>
+        </ul>
+        <h4>Your Choices</h4>
+        <p>You can manage your cookie preferences at any time through your browser settings or via the cookie banner displayed when you visit our website.</p>
+        <h4>Third-Party Cookies</h4>
+        <p>Some cookies on our site are set by third parties (e.g., analytics providers). We do not control these cookies.</p>
+        <h4>Contact Us</h4>
+        <p>Email: <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a><br>Phone: +31 6 86248751</p>
+      `
+    },
+    terms: {
+      title: 'Terms & Conditions',
+      html: `
+        <p class="modal-effective">Effective Date: 20 November 2024</p>
+        <p>By accessing and using the Flow-Creative website (flow-creative.nl), you agree to be bound by these Terms &amp; Conditions. Please read them carefully.</p>
+        <h4>1. Services</h4>
+        <p>Flow-Creative provides freelance digital project management, digital production, and stakeholder management services. The scope and terms of any engagement are agreed upon in writing prior to commencing work.</p>
+        <h4>2. Intellectual Property</h4>
+        <p>All content on this website, including text, images, and design, is the property of Flow-Creative unless otherwise stated. You may not reproduce, distribute, or use any content without prior written permission.</p>
+        <h4>3. Limitation of Liability</h4>
+        <p>Flow-Creative shall not be liable for any indirect, incidental, or consequential damages arising from the use of this website or our services. Our total liability shall not exceed the fees paid for the relevant service.</p>
+        <h4>4. Third-Party Links</h4>
+        <p>Our website may contain links to third-party websites. Flow-Creative is not responsible for the content or practices of these external sites.</p>
+        <h4>5. Confidentiality</h4>
+        <p>Both parties agree to keep confidential any proprietary information shared during a project engagement and not to disclose it to third parties without prior written consent.</p>
+        <h4>6. Governing Law</h4>
+        <p>These Terms &amp; Conditions are governed by the laws of the Netherlands. Any disputes shall be subject to the exclusive jurisdiction of the courts of Amsterdam.</p>
+        <h4>7. Changes to These Terms</h4>
+        <p>Flow-Creative reserves the right to update these Terms &amp; Conditions at any time. Continued use of the website following any changes constitutes acceptance of the updated terms.</p>
+        <h4>8. Contact Us</h4>
+        <p>Email: <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a><br>Phone: +31 6 86248751</p>
+      `
+    }
+  };
+
+  function openModal(type) {
+    const c = content[type];
+    document.getElementById('modalTitle').textContent = c.title;
+    document.getElementById('modalBody').innerHTML = c.html;
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+
+  function dismissCookies() {
+    localStorage.setItem('cookieConsent', 'declined');
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+
+  window.addEventListener('load', function() {
+    if (localStorage.getItem('cookieConsent')) {
+      document.getElementById('cookieBanner').classList.add('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>
