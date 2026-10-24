@@ -7,10 +7,14 @@ Static site: plain HTML, CSS and JavaScript. No build step.
 ```
 flow-creative-site/
 ├── index.html
+├── favicon.ico
 ├── README.md
 └── assets/
     ├── css/styles.css
     ├── js/main.js
+    ├── fonts/       self-hosted Anton and Inter Tight (no Google requests)
+    ├── icons/       favicon and app icons
+    ├── images/      og-image.jpg, the preview shown when the link is shared
     ├── videos/      looping work videos (silent, 20 sec max)
     └── posters/     first-frame image for each video (shown while it loads)
 ```
@@ -34,8 +38,12 @@ To replace a video, keep the same file name and overwrite it. To add a new proje
 
 Video specs used: H.264 MP4, no audio, 540p (720p for the Nike full-width tile), under 6 MB each.
 
-## Before going live
+## Legal pop-ups
 
-- The Privacy, Cookies and Terms links in the footer and cookie banner point to `#`. Replace them once those pages exist.
-- The cookie banner wording ("By continuing, you agree") is implied consent. EU/Dutch rules generally need an explicit Accept before non-essential cookies (analytics, tracking) are set, so review the wording and only load those scripts after Accept.
-- GitHub Pages: Settings > Pages > deploy from the main branch, root folder.
+Privacy, Cookies and Terms open as pop-ups from the footer. Their text lives in the three `<template>` blocks near the bottom of `index.html` (`tpl-privacy`, `tpl-cookies`, `tpl-terms`). Edit the text there.
+
+The site sets no cookies and loads nothing from third parties (fonts are self-hosted), so no cookie banner is needed. If you ever add analytics or embeds (YouTube, Google Analytics, etc.), you will need a consent banner again and must update the Cookies Policy.
+
+## Deploying
+
+The repo must keep its `CNAME` file (it contains `flow-creative.nl`). GitHub Pages publishes automatically on every commit to `main`.

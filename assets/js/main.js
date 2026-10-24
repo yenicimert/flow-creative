@@ -36,19 +36,40 @@
     });
   });
 
-  // Cookie banner (remembers the choice in this browser)
-  var KEY = 'fc-cookie-consent';
-  var banner = document.getElementById('cookie-banner');
-  var saved = null;
-  try { saved = localStorage.getItem(KEY); } catch (e) {}
-  if (banner && !saved) banner.hidden = false;
+  // Legal pop-ups (Privacy, Cookies, Terms)
+  var overlay = document.getElementById('modal');
+  var titleEl = document.getElementById('modal-title');
+  var bodyEl = document.getElementById('modal-body');
+  var lastFocus = null;
 
-  document.querySelectorAll('[data-cookie]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      try { localStorage.setItem(KEY, btn.getAttribute('data-cookie')); } catch (e) {}
-      banner.hidden = true;
-    });
+  function openModal(type) {
+    var tpl = document.getElementById('tpl-' + type);
+    if (!tpl || !overlay) return;
+    lastFocus = document.activeElement;
+    titleEl.textContent = tpl.getAttribute('data-title');
+    bodyEl.innerHTML = '';
+    bodyEl.appendChild(tpl.content.cloneNode(true));
+    bodyEl.scrollTop = 0;
+    overlay.hidden = false;
+    document.body.classList.add('modal-open');
+    overlay.querySelector('.modal-close').focus();
+  }
+
+  function closeModal() {
+    if (!overlay || overlay.hidden) return;
+    overlay.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(function (btn) {
+    btn.addEventListener('click', function () { openModal(btn.getAttribute('data-modal')); });
   });
+  if (overlay) {
+    overlay.querySelector('.modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
   // Footer year
   var year = document.getElementById('year');

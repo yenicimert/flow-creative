@@ -5,9 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flow-Creative | Digital Project Management, Amsterdam</title>
 <meta name="description" content="Flow-Creative is the freelance practice of Mert Yenici, an Amsterdam-based Digital Project Manager bridging the gap between creatives and brands.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://flow-creative.nl/">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0B0C">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flow-creative.nl/">
+<meta property="og:site_name" content="Flow-Creative">
+<meta property="og:title" content="Flow-Creative | Digital Project Management, Amsterdam">
+<meta property="og:description" content="Freelance digital project management by Mert Yenici, bridging the gap between creatives and brands.">
+<meta property="og:image" content="https://flow-creative.nl/assets/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flow-Creative | Digital Project Management, Amsterdam">
+<meta name="twitter:description" content="Freelance digital project management by Mert Yenici, bridging the gap between creatives and brands.">
+<meta name="twitter:image" content="https://flow-creative.nl/assets/images/og-image.jpg">
+<link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -104,7 +119,7 @@
         </div>
       </a>
 
-      <a href="https://canva.link/v7fkd1pgxncw5as" target="_blank" rel="noopener" class="tile tile-full" data-lens="190" aria-label="Mercedes-Benz, A-Series Celebrations. Open portfolio">
+      <a href="https://canva.link/v7fkd1pgxncw5as" target="_blank" rel="noopener" class="tile tile-full tile-narrow" data-lens="150" aria-label="Mercedes-Benz, A-Series Celebrations. Open portfolio">
         <video class="media" src="assets/videos/mercedes-benz-a-series-celebrations.mp4" poster="assets/posters/mercedes-benz-a-series-celebrations.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
         <div class="lens" aria-hidden="true"><video class="media" src="assets/videos/mercedes-benz-a-series-celebrations.mp4" muted loop playsinline></video><div class="lens-tint"></div></div>
         <div class="tile-meta">
@@ -172,24 +187,94 @@
     <div class="footer-bottom label">
       <span>©<span id="year">2026</span> FLOW-CREATIVE. ALL RIGHTS RESERVED.</span>
       <div class="footer-links">
-        <a href="#">PRIVACY</a>
-        <a href="#">COOKIES</a>
-        <a href="#">TERMS</a>
+        <button type="button" class="link-btn" data-modal="privacy">PRIVACY</button>
+        <button type="button" class="link-btn" data-modal="cookies">COOKIES</button>
+        <button type="button" class="link-btn" data-modal="terms">TERMS</button>
       </div>
     </div>
   </div>
 </footer>
 
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie consent" hidden>
-  <div class="cookie-text">
-    <span class="cookie-title"><span class="accent">Cookies</span> on this site</span>
-    <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="#">Cookies Policy</a> and <a href="#">Privacy Statement</a>.</p>
-  </div>
-  <div class="cookie-actions">
-    <button type="button" class="btn" data-cookie="declined">DECLINE</button>
-    <button type="button" class="btn btn-accent" data-cookie="accepted">ACCEPT</button>
+<div class="modal-overlay" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-header">
+      <h2 id="modal-title" class="modal-title"></h2>
+      <button type="button" class="modal-close" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
+
+<template id="tpl-privacy" data-title="Privacy Statement">
+  <p class="modal-effective">Effective date: 25 October 2026</p>
+  <p>Flow-Creative is committed to protecting your privacy. This statement explains what information is processed when you visit this website or get in touch.</p>
+  <h3>1. Information we collect</h3>
+  <ul>
+    <li><strong>Information you provide:</strong> your name, email address and any other details you include when you contact us by email.</li>
+    <li><strong>Technical information:</strong> this website does not use cookies, analytics or tracking. Our hosting provider (GitHub Pages) may log basic technical data such as your IP address to deliver the site securely.</li>
+  </ul>
+  <h3>2. How we use your information</h3>
+  <ul>
+    <li>To respond to your inquiries and provide requested services.</li>
+    <li>To comply with legal obligations.</li>
+  </ul>
+  <h3>3. Sharing your information</h3>
+  <p>We do not sell or rent your information. We only share it when required by law.</p>
+  <h3>4. Cookies</h3>
+  <p>This website does not place cookies. See our Cookies Policy for details.</p>
+  <h3>5. Data retention</h3>
+  <p>We keep your information only as long as needed to handle your inquiry or as required by law.</p>
+  <h3>6. Your rights</h3>
+  <ul>
+    <li>Access, correct or delete your data.</li>
+    <li>Object to or restrict data processing.</li>
+    <li>File a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).</li>
+  </ul>
+  <h3>7. Third-party links</h3>
+  <p>This website links to third-party websites such as LinkedIn and Canva. We are not responsible for their privacy practices.</p>
+  <h3>8. Changes to this statement</h3>
+  <p>We may update this statement from time to time. Any changes will be posted here.</p>
+  <h3>9. Contact</h3>
+  <p>Email: <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a><br>Phone: +31 6 86248751</p>
+</template>
+
+<template id="tpl-cookies" data-title="Cookies Policy">
+  <p class="modal-effective">Effective date: 25 October 2026</p>
+  <p>At Flow-Creative, we value your privacy and are transparent about the technologies we use.</p>
+  <h3>What are cookies?</h3>
+  <p>Cookies are small text files stored on your device by your web browser. They help websites recognize your device and remember your preferences.</p>
+  <h3>Does this website use cookies?</h3>
+  <p>No. This website does not use cookies, analytics, advertising or tracking technologies, and it does not load content from third-party services. That is why you will not see a cookie banner.</p>
+  <h3>Third-party websites</h3>
+  <p>Links to LinkedIn and Canva open those websites, which have their own cookie policies.</p>
+  <h3>Changes to this policy</h3>
+  <p>If we start using cookies in the future, we will update this policy and ask for your consent where required.</p>
+  <h3>Contact</h3>
+  <p>Email: <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a><br>Phone: +31 6 86248751</p>
+</template>
+
+<template id="tpl-terms" data-title="Terms &amp; Conditions">
+  <p class="modal-effective">Effective date: 20 November 2024</p>
+  <p>By accessing and using the Flow-Creative website (flow-creative.nl), you agree to be bound by these Terms &amp; Conditions. Please read them carefully.</p>
+  <h3>1. Services</h3>
+  <p>Flow-Creative provides freelance digital project management, digital production, and stakeholder management services. The scope and terms of any engagement are agreed upon in writing prior to commencing work.</p>
+  <h3>2. Intellectual property</h3>
+  <p>All content on this website, including text, images, and design, is the property of Flow-Creative unless otherwise stated. You may not reproduce, distribute, or use any content without prior written permission.</p>
+  <h3>3. Limitation of liability</h3>
+  <p>Flow-Creative shall not be liable for any indirect, incidental, or consequential damages arising from the use of this website or our services. Our total liability shall not exceed the fees paid for the relevant service.</p>
+  <h3>4. Third-party links</h3>
+  <p>Our website may contain links to third-party websites. Flow-Creative is not responsible for the content or practices of these external sites.</p>
+  <h3>5. Confidentiality</h3>
+  <p>Both parties agree to keep confidential any proprietary information shared during a project engagement and not to disclose it to third parties without prior written consent.</p>
+  <h3>6. Governing law</h3>
+  <p>These Terms &amp; Conditions are governed by the laws of the Netherlands. Any disputes shall be subject to the exclusive jurisdiction of the courts of Amsterdam.</p>
+  <h3>7. Changes to these terms</h3>
+  <p>Flow-Creative reserves the right to update these Terms &amp; Conditions at any time. Continued use of the website following any changes constitutes acceptance of the updated terms.</p>
+  <h3>8. Contact</h3>
+  <p>Email: <a href="mailto:mert@flow-creative.nl">mert@flow-creative.nl</a><br>Phone: +31 6 86248751</p>
+</template>
 
 <script src="assets/js/main.js"></script>
 </body>
