@@ -209,8 +209,15 @@ a:hover { color: var(--accent); }
 .work-title { display: flex; flex-direction: column; gap: 14px; }
 
 .work-grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) clamp(32px, 5vw, 72px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 .tile {
@@ -221,12 +228,13 @@ a:hover { color: var(--accent); }
   display: block;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  border-radius: 6px;
   background: var(--bg);
   color: var(--text);
   transition: --r .45s cubic-bezier(.2, .8, .2, 1);
 }
 .tile:hover { color: var(--text); }
-.tile-full { grid-column: 1 / -1; aspect-ratio: 16 / 9; min-height: 420px; }
+.tile-full { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
 
 .media {
   position: absolute;
@@ -266,7 +274,7 @@ a:hover { color: var(--accent); }
   line-height: 0.95;
   text-transform: uppercase;
 }
-.tile-full .tile-brand { font-size: clamp(40px, 6vw, 96px); }
+.tile-full .tile-brand { font-size: clamp(40px, 5vw, 80px); }
 
 .tile-title {
   font-size: 13px;
@@ -411,12 +419,10 @@ a:hover { color: var(--accent); }
 /* Smaller Mercedes frame */
 
 .tile-narrow {
-  width: calc(100% - 2 * var(--gutter));
+  width: 100%;
   max-width: 960px;
-  min-height: 0;
   justify-self: center;
-  margin: clamp(32px, 5vw, 72px) 0;
-  border-radius: 6px;
+  margin: clamp(32px, 5vw, 72px) 0 0;
 }
 
 /* Legal pop-ups */
