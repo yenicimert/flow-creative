@@ -9,7 +9,7 @@
   });
 
   // Lens hover effect on work tiles
-  document.querySelectorAll('.tile').forEach(function (tile) {
+  document.querySelectorAll('.tile, .case-media').forEach(function (tile) {
     var videos = tile.querySelectorAll('video');
     var base = videos[0];
     var lens = videos[1];
@@ -35,6 +35,29 @@
       if (lens) lens.pause();
     });
   });
+
+  // Work: sticky stacking cards scale down as the next one slides over
+  var stack = document.querySelector('[data-stack]');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (stack && !reduce) {
+    var cards = [].slice.call(stack.querySelectorAll('.stack-card'));
+    var n = cards.length;
+    var ticking = false;
+    var update = function () {
+      ticking = false;
+      var r = stack.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - window.innerHeight)));
+      cards.forEach(function (card, i) {
+        var target = 1 - (n - 1 - i) * 0.025;
+        var t = Math.min(1, Math.max(0, (p - i / n) / (1 - i / n)));
+        card.style.transform = 'scale(' + (1 + (target - 1) * t).toFixed(4) + ')';
+      });
+    };
+    var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
 
   // Legal pop-ups (Privacy, Cookies, Terms)
   var overlay = document.getElementById('modal');

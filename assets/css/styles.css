@@ -208,16 +208,74 @@ a:hover { color: var(--accent); }
 }
 .work-title { display: flex; flex-direction: column; gap: 14px; }
 
-.work-grid {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 var(--gutter) clamp(32px, 5vw, 72px);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+/* Work: sticky stacking case studies */
+
+.stack { position: relative; padding-bottom: 12vh; }
+
+.stack-slot {
+  position: sticky;
+  top: 0;
+  height: 85vh;
+  min-height: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(80px, 11vh, 112px) var(--gutter) 0;
 }
-@media (max-width: 900px) {
-  .work-grid { grid-template-columns: minmax(0, 1fr); }
+
+.stack-card {
+  position: relative;
+  top: calc(var(--i) * 20px);
+  width: min(1328px, 100%);
+  height: calc(100% - 24px - var(--i) * 20px);
+  display: flex;
+  gap: clamp(12px, 1.6vw, 20px);
+  padding: clamp(12px, 1.6vw, 20px);
+  border-radius: clamp(24px, 3vw, 40px);
+  border: 1px solid var(--line-strong);
+  background: #141416;
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.55);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.case-text {
+  flex: 1 1 38%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(12px, 2vw, 32px);
+}
+.case-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.case-num { font-family: var(--display); font-size: 22px; color: var(--accent); }
+.case-head { display: flex; flex-direction: column; gap: 14px; }
+.case-brand { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(36px, 4.4vw, 72px); line-height: 0.92; text-transform: uppercase; }
+.case-title { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); }
+.case-link { align-self: flex-start; }
+
+.case-media {
+  --x: 50%;
+  --y: 50%;
+  --r: 0px;
+  flex: 1 1 62%;
+  min-width: 0;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: clamp(16px, 2vw, 28px);
+  background: var(--bg);
+  transition: --r .45s cubic-bezier(.2, .8, .2, 1);
+}
+.case-media:hover .media { transform: scale(1.04); }
+
+@media (max-width: 860px) {
+  .stack-slot { height: 88vh; padding-top: 184px; }
+  .stack-card { flex-direction: column-reverse; }
+  .case-media { flex: 1 1 auto; min-height: 0; }
+  .case-text { flex: 0 0 auto; gap: 16px; padding: 8px 8px 12px; }
+  .case-brand { font-size: clamp(30px, 8vw, 44px); }
 }
 
 .tile {

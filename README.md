@@ -34,9 +34,9 @@ Lowercase, words separated by hyphens, `brand-project.mp4`. Each video has a mat
 | Johnnie Walker, Black Label Whisky Desire | `assets/videos/jw-black-label-whisky-desire.mp4` | `assets/posters/jw-black-label-whisky-desire.jpg` |
 | Mercedes-Benz, A-Series Celebrations | `assets/videos/mercedes-benz-a-series-celebrations.mp4` | `assets/posters/mercedes-benz-a-series-celebrations.jpg` |
 
-To replace a video, keep the same file name and overwrite it. To add a new project, copy one `<a class="tile">` block in `index.html` and point it at the new file names.
+To replace a video, keep the same file name and overwrite it. The Work section is a stack of sticky cards: to add a project, copy one `<div class="stack-slot">` block in `index.html`, set its `--i` to the next number (0, 1, 2...), and point it at the new file names.
 
-Video specs used: H.264 MP4, no audio, 540p (720p for the Nike full-width tile), under 6 MB each.
+Video specs used: H.264 MP4, no audio, 540p (720p for Nike), under 6 MB each.
 
 ## Legal pop-ups
 
