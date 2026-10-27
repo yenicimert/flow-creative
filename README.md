@@ -46,4 +46,7 @@ The site sets no cookies and loads nothing from third parties (fonts are self-ho
 
 ## Deploying
 
+When you change `styles.css` or `main.js`, bump the `?v=` number on their links in `index.html` (for example `?v=2` to `?v=3`) so browsers load the new version straight away.
+
+
 The repo must keep its `CNAME` file (it contains `flow-creative.nl`). GitHub Pages publishes automatically on every commit to `main`.
